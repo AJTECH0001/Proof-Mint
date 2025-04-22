@@ -1,93 +1,95 @@
-
-const CustomerTestimonials = () => {
+const PartnerTestimonials = () => {
   return (
-    <main className="max-w-7xl mx-auto px-4 md:px-6 ">
-      <section className="py-16 bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl mt-20">
+    <main className="max-w-7xl mx-auto px-4 md:px-6">
+      <section className="py-16  bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl rounded-3xl mt-20">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            What Our Customers Say
+            Hear from our partners
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+            {/* SWEAT Testimonial */}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
               <div className="flex items-center mb-6">
                 <img
                   src="https://placehold.co/100x100"
-                  alt="Customer"
-                  className="w-12 h-12 rounded-full"
+                  alt="SWEAT Logo"
+                  className="w-12 h-12"
                 />
                 <div className="ml-4">
-                  <h4 className="font-semibold">Sarah Johnson</h4>
-                  <p className="text-sm text-gray-600">Verified Buyer</p>
+                  <h4 className="font-semibold">SWEAT</h4>
                 </div>
               </div>
-              <div className="flex mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className="material-symbols-outlined text-yellow-400"
-                  >
-                    star
-                  </span>
-                ))}
-              </div>
-              <p className="text-gray-600">
-                The NFT receipt system gives me peace of mind knowing my
-                purchase is securely recorded on the blockchain.
+              <p className="text-gray-600 mb-4">
+                Ramp Network significantly increased our success rate in
+                countries where other providers failed.
               </p>
+              <div className="flex items-center">
+                <img
+                  src="https://placehold.co/40x40"
+                  alt="Illa R."
+                  className="w-8 h-8 rounded-full"
+                />
+                <div className="ml-2">
+                  <p className="text-sm font-semibold">Illa R.</p>
+                  <p className="text-xs text-gray-600">Product Head at SWEAT Wallet</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+
+            {/* Brave Testimonial */}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
               <div className="flex items-center mb-6">
                 <img
                   src="https://placehold.co/100x100"
-                  alt="Customer"
-                  className="w-12 h-12 rounded-full"
+                  alt="Brave Logo"
+                  className="w-12 h-12"
                 />
                 <div className="ml-4">
-                  <h4 className="font-semibold">Michael Chen</h4>
-                  <p className="text-sm text-gray-600">Tech Enthusiast</p>
+                  <h4 className="font-semibold">Brave</h4>
                 </div>
               </div>
-              <div className="flex mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className="material-symbols-outlined text-yellow-400"
-                  >
-                    star
-                  </span>
-                ))}
-              </div>
-              <p className="text-gray-600">
-                Love how easy it is to track my device's lifecycle and
-                contribute to sustainable electronics.
+              <p className="text-gray-600 mb-4">
+                Ramp Network helps bring Web3 to our 55+ million users.
               </p>
+              <div className="flex items-center">
+                <img
+                  src="https://placehold.co/40x40"
+                  alt="Brendan Eich"
+                  className="w-8 h-8 rounded-full"
+                />
+                <div className="ml-2">
+                  <p className="text-sm font-semibold">Brendan Eich</p>
+                  <p className="text-xs text-gray-600">Co-founder & CEO of Brave</p>
+                </div>
+              </div>
             </div>
-            <div className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
+
+            {/* Sorare Testimonial */}
+            <div className="bg-gray-50 p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2">
               <div className="flex items-center mb-6">
                 <img
                   src="https://placehold.co/100x100"
-                  alt="Customer"
-                  className="w-12 h-12 rounded-full"
+                  alt="Sorare Logo"
+                  className="w-12 h-12"
                 />
                 <div className="ml-4">
-                  <h4 className="font-semibold">Emma Williams</h4>
-                  <p className="text-sm text-gray-600">Early Adopter</p>
+                  <h4 className="font-semibold">Sorare</h4>
                 </div>
               </div>
-              <div className="flex mb-4">
-                {[1, 2, 3, 4, 5].map((star) => (
-                  <span
-                    key={star}
-                    className="material-symbols-outlined text-yellow-400"
-                  >
-                    star
-                  </span>
-                ))}
-              </div>
-              <p className="text-gray-600">
-                The platform makes it incredibly simple to resell my devices
-                while maintaining proof of authenticity.
+              <p className="text-gray-600 mb-4">
+                Ramp Network is the ultimate low friction on-ramp.
               </p>
+              <div className="flex items-center">
+                <img
+                  src="https://placehold.co/40x40"
+                  alt="Brian O'Hagan"
+                  className="w-8 h-8 rounded-full"
+                />
+                <div className="ml-2">
+                  <p className="text-sm font-semibold">Brian O'Hagan</p>
+                  <p className="text-xs text-gray-600">Growth Lead at Sorare</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -96,4 +98,4 @@ const CustomerTestimonials = () => {
   );
 };
 
-export default CustomerTestimonials;
+export default PartnerTestimonials;
