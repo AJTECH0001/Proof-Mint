@@ -32,6 +32,7 @@ contract ProofMint is ERC721, AccessControl {
     // Mappings
     mapping(uint256 => Gadget) public gadgets; // Token ID to gadget details
     mapping(string => uint256) public imeiToTokenId; // IMEI to token ID
+    mapping(string => uint256) public serialNumberToTokenId; // Serial number to token ID
     mapping(uint256 => string) private _tokenURIs; // Custom token URI storage
 
     // ERC-20 reward token and recycling reward amount
@@ -51,19 +52,23 @@ contract ProofMint is ERC721, AccessControl {
     error InvalidAddress();
     error InvalidIMEI();
     error IMEIAlreadyRegistered();
+    error InvalidSerialNumber();
+    error SerialNumberAlreadyRegistered();
     error TokenDoesNotExist();
     error NotTokenOwner();
     error GadgetNotActive();
     error NotApprovedSeller();
     error NotApprovedRecycler();
 
-    /// @notice Initializes the contract with the reward token address
+    /// @notice Initializes the contract with the reward token and initial owner
     /// @param _rewardToken Address of the ERC-20 reward token
-    constructor(address _rewardToken) ERC721("ProofMint", "PMT") {
+    /// @param initialOwner Address to grant DEFAULT_ADMIN_ROLE and ADMIN_ROLE
+    constructor(address _rewardToken, address initialOwner) ERC721("ProofMint", "PMT") {
         if (_rewardToken == address(0)) revert InvalidAddress();
+        if (initialOwner == address(0)) revert InvalidAddress();
 
-        _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
-        _grantRole(ADMIN_ROLE, msg.sender);
+        _grantRole(DEFAULT_ADMIN_ROLE, initialOwner);
+        _grantRole(ADMIN_ROLE, initialOwner);
 
         rewardToken = _rewardToken;
         recyclingReward = 10 * 10**18; // 10 tokens
@@ -86,7 +91,7 @@ contract ProofMint is ERC721, AccessControl {
 
     /// @notice Mints an NFT for a gadget purchase
     /// @param buyer Address of the buyer
-    /// @param serialNumber Gadget serial number
+    /// @param serialNumber Gadget serial number (unique)
     /// @param imei Gadget IMEI (unique identifier)
     /// @param specs Gadget specifications
     /// @param metadataURI Token metadata URI
@@ -102,6 +107,8 @@ contract ProofMint is ERC721, AccessControl {
         if (buyer == address(0)) revert InvalidAddress();
         if (bytes(imei).length == 0) revert InvalidIMEI();
         if (imeiToTokenId[imei] != 0) revert IMEIAlreadyRegistered();
+        if (bytes(serialNumber).length == 0) revert InvalidSerialNumber();
+        if (serialNumberToTokenId[serialNumber] != 0) revert SerialNumberAlreadyRegistered();
 
         _tokenIdCounter++; // Increment counter
         uint256 tokenId = _tokenIdCounter;
@@ -117,6 +124,7 @@ contract ProofMint is ERC721, AccessControl {
             currentOwner: buyer
         });
         imeiToTokenId[imei] = tokenId;
+        serialNumberToTokenId[serialNumber] = tokenId;
 
         emit GadgetMinted(tokenId, buyer, serialNumber, imei, metadataURI);
         return tokenId;
@@ -170,14 +178,22 @@ contract ProofMint is ERC721, AccessControl {
         emit RecyclingRewardUpdated(newReward);
     }
 
-   // ------------------- //
-
     /// @notice Checks gadget status by token ID
     /// @param tokenId The token ID of the gadget
+    /// @return status The gadget’s status
+    /// @return currentOwner The current owner of the gadget
     function checkGadgetStatusByTokenID(uint256 tokenId) external view returns (GadgetStatus, address) {
         if (!_exists(tokenId)) revert TokenDoesNotExist();
         return (gadgets[tokenId].status, gadgets[tokenId].currentOwner);
     }
+
+    /// @notice Retrieves gadget details by token ID
+    /// @param tokenId The gadget’s token ID
+    /// @return serialNumber Serial number of the gadget
+    /// @return imei IMEI (unique identifier) of the gadget
+    /// @return specs Specifications of the gadget
+    /// @return status The gadget’s status
+    /// @return currentOwner The current owner of the gadget
     function getGadgetDetails(uint256 tokenId)
         external
         view
@@ -242,12 +258,14 @@ contract ProofMint is ERC721, AccessControl {
         return _ownerOf(tokenId) != address(0);
     }
 
-    /// @notice Cleans up token URI during burns
+    /// @notice Cleans up token URI and mappings during burns
     /// @param to The recipient address
     /// @param tokenId The token ID
     function _beforeTokenTransfer(address /* from */, address to, uint256 tokenId, uint256 /* batchSize */) internal {
         if (to == address(0)) {
             delete _tokenURIs[tokenId];
+            delete imeiToTokenId[gadgets[tokenId].imei];
+            delete serialNumberToTokenId[gadgets[tokenId].serialNumber];
         }
     }
 
