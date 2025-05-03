@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import { Role } from "./utils/types";
 import { checkRole, getContract } from "./utils/contract";
+import Signup from "./pages/signup";
+import Signin from "./pages/signin";
 
 const App: React.FC = () => {
   const { address, isConnected } = useAccount();
@@ -35,6 +37,10 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home account={address || ""} role={role} />} />
           <Route path="/dashboard" element={<Dashboard account={address || ""} role={role} />} />
+          <Route path="/dashboard" element={<Dashboard account={address || ""} role={role} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/signin" element={<Signin />} />
+          {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
         </Routes>
       </div>
     </Router>

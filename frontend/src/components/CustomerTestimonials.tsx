@@ -1,7 +1,7 @@
 const PartnerTestimonials = () => {
   return (
     <main className="max-w-7xl mx-auto px-4 md:px-6">
-      <section className="py-16  bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl rounded-3xl mt-20">
+      <section className="py-16  bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl  mt-20">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             Hear from our partners

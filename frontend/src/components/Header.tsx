@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 
 export default function NewHeader() {
   return (
@@ -28,8 +28,14 @@ export default function NewHeader() {
           </div>
           <div className="flex items-center space-x-4">
            
-          <ConnectButton />
+          <button
+                
+                className="mt-4 inline-block bg-green-500 font-bold  px-4 py-2 rounded hover:bg-green-600"
+              >
+                Get Started
+              </button>
           </div>
+         
         </div>
       </nav>
     </main>
