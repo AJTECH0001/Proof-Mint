@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@creit.tech/stellar-wallets-kit": "^1.7.3",
-    "buffer": "^6.0.3"
-  }
-}
