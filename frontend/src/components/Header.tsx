@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-
 export default function NewHeader() {
   return (
     <main className="max-w-7xl mx-auto px-4 md:px-6    sticky top-0 z-50">
@@ -27,15 +26,14 @@ export default function NewHeader() {
             </Link>
           </div>
           <div className="flex items-center space-x-4">
-           
-          <button
-                
-                className="mt-4 inline-block bg-green-500 font-bold  px-4 py-2 rounded hover:bg-green-600"
-              >
-                Get Started
-              </button>
+            <div className="flex items-center space-x-4">
+              <Link to="/signup">
+                <button className="mt-4 inline-block bg-green-500 font-bold px-4 py-2 rounded hover:bg-green-600">
+                  Get Started
+                </button>
+              </Link>
+            </div>
           </div>
-         
         </div>
       </nav>
     </main>
