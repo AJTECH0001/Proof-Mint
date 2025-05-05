@@ -1,51 +1,53 @@
-import { CiMail } from "react-icons/ci";
-import { FaLinkedin } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaFacebook } from "react-icons/fa";
-// import darklogo from "../assets/darklogo.svg";
+import { CiMail } from 'react-icons/ci';
+import { FaLinkedin, FaTwitter, FaFacebook } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 p-6 lg:p-12 my-20 w-full">
-      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center max-w-[1240px] mx-auto">
-        {/* Left Column - Logo and Email */}
+    <footer className="bg-gray-100 p-6 lg:p-12">
+      <div className="max-w-[1240px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="flex flex-col items-start gap-4">
-        <div className="flex items-center space-x-2">
-        <span className="material-symbols-outlined text-3xl">receipt_long</span>
-        <h1 className="text-xl font-bold">ProofMint</h1>
-      </div>
+          <Link to="/" className="flex items-center space-x-2" aria-label="ProofMint Home">
+            <span className="material-symbols-outlined text-3xl text-green-500">receipt_long</span>
+            <h1 className="text-xl font-bold">ProofMint</h1>
+          </Link>
           <div className="flex items-center text-[#3C4D35]">
             <CiMail size={24} className="mr-2" />
-            <a href="mailto:contact@safemind.com" className="text-sm lg:text-base">contact@proofmint.com</a>
+            <a href="mailto:contact@proofmint.com" className="text-base" aria-label="Email ProofMint support">
+              contact@proofmint.com
+            </a>
           </div>
         </div>
-
-        {/* Right Column - Social Links */}
-        <div className="flex flex-col items-start lg:items-end gap-4 mt-6 lg:mt-0">
-          <p className="text-[#3C4D35] font-semibold text-sm lg:text-base">Connect with us</p>
+        <div className="flex flex-col items-start gap-4">
+          <p className="text-[#3C4D35] font-semibold text-base">Quick Links</p>
+          <div className="flex flex-col gap-2">
+            <Link to="/marketplace" className="text-[#3C4D35] hover:text-green-600">Marketplace</Link>
+            <Link to="/nft-receipts" className="text-[#3C4D35] hover:text-green-600">NFT Receipts</Link>
+            <Link to="/recycling" className="text-[#3C4D35] hover:text-green-600">Recycling</Link>
+            <Link to="/track" className="text-[#3C4D35] hover:text-green-600">Track Items</Link>
+          </div>
+        </div>
+        <div className="flex flex-col items-start md:items-end gap-4">
+          <p className="text-[#3C4D35] font-semibold text-base">Connect with Us</p>
           <div className="flex gap-4">
-            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-              <FaLinkedin size={24} className="text-[#3C4D35]" />
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="ProofMint on LinkedIn">
+              <FaLinkedin size={24} className="text-[#3C4D35] hover:text-green-600" />
             </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-              <FaXTwitter size={24} className="text-[#3C4D35]" />
+            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="ProofMint on Twitter">
+              <FaTwitter size={24} className="text-[#3C4D35] hover:text-green-600" />
             </a>
-            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
-              <FaFacebook size={24} className="text-[#3C4D35]" />
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="ProofMint on Facebook">
+              <FaFacebook size={24} className="text-[#3C4D35] hover:text-green-600" />
             </a>
           </div>
         </div>
       </div>
-
-      {/* Center Bottom Links and Copyright */}
-      <div className="mt-10 lg:mt-16 text-center">
+      <div className="mt-10 text-center">
         <div className="flex justify-center gap-8 mb-4">
-          <a href="#link1" className="text-[#3C4D35] text-sm lg:text-base">TERMS OF USE</a>
-          <a href="#link2" className="text-[#3C4D35] text-sm lg:text-base">PRIVACY POLICY</a>
+          <Link to="/terms" className="text-[#3C4D35] text-base hover:text-green-600">Terms of Use</Link>
+          <Link to="/privacy" className="text-[#3C4D35] text-base hover:text-green-600">Privacy Policy</Link>
         </div>
-        <p className="text-[#3C4D35] text-xs lg:text-sm">
-          © {new Date().getFullYear()} PROOFMINT.
-        </p>
+        <p className="text-[#3C4D35] text-sm">© {new Date().getFullYear()} ProofMint</p>
       </div>
     </footer>
   );
